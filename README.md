@@ -36,6 +36,7 @@ The contract is deployed locally using **Anvil** (chainId `31337`).
 anvil
 
 ```
+![Counter dApp](screenshots/anvil.png)
 
 ### 2. Deploy the contract
 
@@ -46,6 +47,8 @@ forge script script/DeployCounter.s.sol \
   --broadcast
 
 ```
+
+![Counter dApp](screenshots/contract.png)
 
 After deployment, copy the generated contract address and update it in:
 frontend/index.html
@@ -58,8 +61,12 @@ python3 -m http.server 5173
 
 ```
 
+![Counter dApp](screenshots/serverHttp.png)
+
 Open in the browser:
 http://localhost:5173
+
+![Counter dApp](screenshots/frontend.png)
 
 ---
 
