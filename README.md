@@ -1,33 +1,84 @@
-# Counter dApp – Web3 Challenge
+# Web3 Counter dApp
 
-## Descrição
-Aplicação Web3 simples que demonstra integração entre frontend e smart contract Ethereum.
+Simple Web3 dApp built with Solidity, Foundry (Anvil) and Ethers.js.
 
-A dApp permite:
-- Conectar carteira via MetaMask
-- Ler valor on-chain do contador
-- Incrementar o contador via transação
-
-Projeto desenvolvido para execução local utilizando Anvil (Foundry).
+The application allows a user to connect a wallet (MetaMask) and increment a counter stored on a smart contract deployed on a local blockchain.
 
 ---
 
-## Tecnologias
-- Solidity ^0.8.x
-- Foundry (Forge / Anvil)
-- Ethers.js v6
-- MetaMask
-- Bootstrap 5
+## Tech Stack
+
+- Solidity  
+- Foundry (Forge + Anvil)  
+- Ethers.js v6  
+- MetaMask  
+- Bootstrap 5  
+- Python HTTP Server  
 
 ---
 
-## Pré-requisitos
-- Node.js
-- MetaMask instalada no navegador
-- Foundry
+## Smart Contract
 
-Instalação do Foundry:
+The contract stores a single `uint256` counter and exposes:
+
+- `counter()` — returns the current value  
+- `increment()` — increments the counter by 1  
+
+The contract is deployed locally using **Anvil** (chainId `31337`).
+
+---
+
+## How to Run Locally
+
+### 1. Start local blockchain
+
 ```bash
-curl -L https://foundry.paradigm.xyz | bash
-foundryup
+anvil
+
+```
+
+### 2. Deploy the contract
+
+```bash
+forge script script/DeployCounter.s.sol \
+  --rpc-url http://127.0.0.1:8545 \
+  --private-key <ANVIL_PRIVATE_KEY> \
+  --broadcast
+
+```
+
+After deployment, copy the generated contract address and update it in:
+frontend/index.html
+
+### 3. Start frontend
+
+```bash
+cd frontend
+python3 -m http.server 5173
+
+```
+
+Open in the browser:
+http://localhost:5173
+
+---
+
+## Usage
+
+- Connect MetaMask (Anvil network)
+- Click Increment
+- Confirm the transaction
+- Counter value updates after confirmation 
+
+---
+
+## Notes
+
+- Uses Anvil default test accounts
+- No real ETH involved
+- Project intended for technical assessment purposes
+
+
+
+
 
